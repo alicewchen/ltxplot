@@ -1,25 +1,14 @@
 library(ggplot2)
-mtcars2 <- within(mtcars, {
-  vs <- factor(vs, labels = c("V-shaped", "Straight"))
-  am <- factor(am, labels = c("Automatic", "Manual"))
-  cyl  <- factor(cyl)
-  gear <- factor(gear)
-})
-
-p1 <- ggplot(mtcars2) +
-  geom_point(aes(x = wt, y = mpg, colour = gear), size = 2) +
-  labs(title = "Fuel economy declines as weight increases",
-       subtitle = "(1973-74)",
-       caption = "Data from the 1974 Motor Trend US magazine.",
-       tag = "Figure 1",
-       x = "Weight (1000 lbs)",
-       y = "Fuel economy (mpg)",
-       colour = "Gears")
-
-p1 + theme_latex(base_size = 14)
-
-p2 <- ggplot(mtcars, aes(wt, mpg)) +
-  geom_point() +
-  facet_wrap(~ cyl)
-
-p2 + theme_latex(base_size = 14)
+library(ltxplot)
+load_theme_ltx()
+df <- mtcars
+df$carb <- as.factor(df$carb)
+ggplot(df, aes(x=carb, fill = carb))+
+  geom_bar(stat= "count", width=0.7)+
+  labs(title = 'Number of cars with different number of carburetors', 
+       x = "Number of carburetors", 
+       y = "Number of car models",
+       tag = 'Figure 1',
+       caption = "Data source: mtcars") +
+  theme_latex(base_size = 14) +
+  theme(legend.position = "none")
