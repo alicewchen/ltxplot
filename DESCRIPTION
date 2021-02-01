@@ -1,18 +1,18 @@
-Package: LTXplot
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Package: ltxplot
+Title: Latex-Style GGplot2 Theme
+Version: 1.0.0.0
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Wen",
+           family = "Chen",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "w.chen.alice@gmail.com")
+Description: Creates ggplot2 plot theme in Latex style with custom color-blind friendly colour palette.
 Depends: R (>= 3.6.1)
 Imports:
-	ggplot2 (>= 3.3.3),
-	showtext (>= 0.9-2)
-License: use_gpl_license(version = 3, include_future = TRUE)
+	ggplot2,
+	showtext,
+	sysfonts
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
