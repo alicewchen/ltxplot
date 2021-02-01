@@ -1,28 +1,49 @@
+#' @name theme_latex
+#' @title Add LaTeX theme to ggplot object
+#' @description This function changes ggplot theme to LaTeX style
+#' @keywords theme_latex
+#' @import sysfonts
+#' @import showtext
+#' @import ggplot2
+#' @export theme_latex
+#' @export load_theme_ltx
+#' @examples
+#' library(ggplot2)
+#' df <- mtcars
+#' df$cyl <- as.factor(df$cyl)
+#' load_theme_ltx()
+#' ggplot(df, aes(x = wt, y = mpg, color= cyl)) +
+#'   geom_point()+
+#'   theme_latex(base_size = 18)
+
+
 # Add Latin Modern Roman font
 # This is the default LaTeX font
-if (!requireNamespace("showtext", quietly = TRUE)) {
-  stop("Package \"showtext\" needed to install custom font. Please install it.",
-       call. = FALSE)
-} else {
-  sysfonts::font_add(family = "lmroman",
-           regular = "../LTXplot/fonts/lmroman10-regular-webfont.ttf",
-           bold = "../LTXplot/fonts/lmromandemi10-regular-webfont.ttf",
-           italic = "../LTXplot/fonts/lmroman10-italic-webfont.ttf",
-           bolditalic = "../LTXplot/fonts/lmroman10-bolditalic-webfont.ttf")
-  showtext::showtext_auto()
-}
 
-# Set global custom colorblind-friendly palette
+load_theme_ltx<- function(){
+  font_dir <- paste(system.file(package = "LTXplot"),"/extdata/fonts/", sep ="")
+  sysfonts::font_paths(font_dir)
 
-opts <- options(
-  ggplot2.discrete.fill = list(
-    c("#D55E00", "#0072B2"),
-    c("#D55E00", "#0072B2","#009E73", "#F0E442"),
-    c("#E69F00", "#56B4E9", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
-    )
-)
+  if (!requireNamespace(c("sysfonts","showtext"), quietly = TRUE)) {
+    stop("Package \"showtext\" needed to install custom font. Please install it.",
+         call. = FALSE)
+    } else {
+      sysfonts::font_add(family = "lmroman",
+                       regular = paste(font_dir, "lmroman10-regular-webfont.ttf", sep = ""),
+                       bold = paste(font_dir, "lmromandemi10-regular-webfont.ttf", sep = ""),
+                       italic = paste(font_dir, "lmroman10-italic-webfont.ttf", sep = ""),
+                       bolditalic = paste(font_dir, "lmroman10-bolditalic-webfont.ttf", sep = ""))
+      showtext::showtext_auto()
+      }
 
-
+    # Set global custom colorblind-friendly palette
+  options(
+      ggplot2.discrete.fill = list(
+        c("#D55E00", "#0072B2"),
+        c("#D55E00", "#0072B2","#009E73", "#F0E442"),
+        c("#E69F00", "#56B4E9", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+      ))
+  }
 
 theme_latex <- function(font = "lmroman", base_size = 12) {
   if (!requireNamespace("ggplot2", quietly = TRUE)) {
