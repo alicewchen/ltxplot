@@ -15,8 +15,8 @@
 #' df$carb <- as.factor(df$carb)
 #' ggplot(df, aes(x=carb, fill = carb))+
 #'   geom_bar(stat= "count", width=0.7)+
-#'   labs(title = 'Number of cars with different number of carburetors', 
-#'        x = "Number of carburetors", 
+#'   labs(title = 'Number of cars with different number of carburetors',
+#'        x = "Number of carburetors",
 #'        y = "Number of car models",
 #'        tag = 'Figure 1',
 #'        caption = "Data source: mtcars") +
@@ -29,7 +29,7 @@
 # This is the default LaTeX font
 
 load_theme_ltx<- function(){
-  font_dir <- paste(system.file(package = "LTXplot"),"/extdata/fonts/", sep ="")
+  font_dir <- paste(system.file(package = "ltxplot"),"/extdata/fonts/", sep ="")
   sysfonts::font_paths(font_dir)
 
   if (!requireNamespace(c("sysfonts","showtext"), quietly = TRUE)) {
@@ -37,10 +37,10 @@ load_theme_ltx<- function(){
          call. = FALSE)
     } else {
       sysfonts::font_add(family = "lmroman",
-                       regular = paste(font_dir, "lmroman10-regular-webfont.ttf", sep = ""),
-                       bold = paste(font_dir, "lmromandemi10-regular-webfont.ttf", sep = ""),
-                       italic = paste(font_dir, "lmroman10-italic-webfont.ttf", sep = ""),
-                       bolditalic = paste(font_dir, "lmroman10-bolditalic-webfont.ttf", sep = ""))
+                       regular = paste(font_dir, "NewCM10-Regular.otf", sep = ""),
+                       bold = paste(font_dir, "NewCM10-Bold.otf", sep = ""),
+                       italic = paste(font_dir, "NewCM10-Italic.otf", sep = ""),
+                       bolditalic = paste(font_dir, "NewCM10-BoldItalic.otf", sep = ""))
       showtext::showtext_auto()
       }
 
