@@ -1,57 +1,12 @@
 #' @name theme_latex
 #' @title Add LaTeX theme to ggplot object
 #' @description This function changes ggplot theme to LaTeX style
+#' @param font character; "lmroman" by default
+#' @param base_size numeric; 12 by default
 #' @keywords theme_latex
-#' @import sysfonts
-#' @import showtext
 #' @import ggplot2
 #' @export theme_latex
-#' @export load_theme_ltx
-#' @examples
-#' library(ggplot2)
-#' library(ltxplot)
-#' load_theme_ltx()
-#' df <- mtcars
-#' df$carb <- as.factor(df$carb)
-#' ggplot(df, aes(x=carb, fill = carb))+
-#'   geom_bar(stat= "count", width=0.7)+
-#'   labs(title = 'Number of cars with different number of carburetors',
-#'        x = "Number of carburetors",
-#'        y = "Number of car models",
-#'        tag = 'Figure 1',
-#'        caption = "Data source: mtcars") +
-#'   theme_latex(base_size = 14) +
-#'   theme(legend.position = "none")
-
-
-
-# Add Latin Modern Roman font
-# This is the default LaTeX font
-
-load_theme_ltx<- function(){
-  font_dir <- paste(system.file(package = "ltxplot"),"/extdata/fonts/", sep ="")
-  sysfonts::font_paths(font_dir)
-
-  if (!requireNamespace(c("sysfonts","showtext"), quietly = TRUE)) {
-    stop("Package \"showtext\" needed to install custom font. Please install it.",
-         call. = FALSE)
-    } else {
-      sysfonts::font_add(family = "lmroman",
-                       regular = paste(font_dir, "NewCM10-Regular.otf", sep = ""),
-                       bold = paste(font_dir, "NewCM10-Bold.otf", sep = ""),
-                       italic = paste(font_dir, "NewCM10-Italic.otf", sep = ""),
-                       bolditalic = paste(font_dir, "NewCM10-BoldItalic.otf", sep = ""))
-      showtext::showtext_auto()
-      }
-
-    # Set global custom colorblind-friendly palette
-  options(
-      ggplot2.discrete.fill = list(
-        c("#D55E00", "#0072B2"),
-        c("#D55E00", "#0072B2","#009E73", "#F0E442"),
-        c("#E69F00", "#56B4E9", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
-      ))
-  }
+#' @template common_example
 
 theme_latex <- function(font = "lmroman", base_size = 12) {
   if (!requireNamespace("ggplot2", quietly = TRUE)) {
