@@ -1,6 +1,6 @@
 #' @name theme_latex
 #' @title Add LaTeX theme to ggplot object
-#' @description This function changes ggplot theme to LaTeX style
+#' @description This function changes ggplot object theme to LaTeX and color blind friendly style.
 #' @param font character; "lmroman" by default
 #' @param base_size numeric; 12 by default
 #' @keywords theme_latex
