@@ -1,6 +1,6 @@
 Package: ltxplot
 Title: Latex-Style GGplot2 Theme
-Version: 1.0.0.0
+Version: 1.0.0
 Authors@R: 
     person(given = "Wen",
            family = "Chen",
